@@ -9,7 +9,9 @@ public enum ExceptedTime {
     CHECK_BANS(30 * 1000),
     ADD_BAN_ENTRY(30 * 1000),
     APPLY_BANLIST(30 * 1000),
-    STAGE_BAN_WAVE(COLLECT_PEERS.timeout + CHECK_BANS.timeout + ADD_BAN_ENTRY.timeout + APPLY_BANLIST.timeout + 10 * 1000);
+    STAGE_BAN_WAVE(COLLECT_PEERS.timeout + CHECK_BANS.timeout + ADD_BAN_ENTRY.timeout + APPLY_BANLIST.timeout + 10 * 1000),
+    RUN_BLOCKER(30 * 1000),
+    BAN_PEER(3 * 1000);
 
     @Getter
     private final long timeout;

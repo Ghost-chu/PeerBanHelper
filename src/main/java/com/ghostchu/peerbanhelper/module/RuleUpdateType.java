@@ -1,6 +1,6 @@
 package com.ghostchu.peerbanhelper.module;
 
-public enum IPBanRuleUpdateType {
+public enum RuleUpdateType {
     AUTO,
     MANUAL
 }

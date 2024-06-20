@@ -3,6 +3,7 @@ package com.ghostchu.peerbanhelper.config;
 import com.ghostchu.peerbanhelper.text.Lang;
 import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
+import org.bspfsystems.yamlconfiguration.configuration.ConfigurationSection;
 import org.bspfsystems.yamlconfiguration.file.YamlConfiguration;
 
 import java.util.ArrayList;
@@ -16,6 +17,15 @@ public class ProfileUpdateScript {
 
     public ProfileUpdateScript(YamlConfiguration conf) {
         this.conf = conf;
+    }
+
+    @UpdateScript(version = 8)
+    public void subModuleUpdate() {
+        conf.set("disconnect-timeout", 60000);
+        conf.set("module.rule-sub-blockers", conf.getConfigurationSection("module.ip-address-blocker-rules"));
+        conf.set("module.ip-address-blocker-rules", null);
+        ConfigurationSection rules = conf.getConfigurationSection("module.rule-sub-blockers.rules");
+        rules.getKeys(false).forEach(ruleId -> rules.getConfigurationSection(ruleId).set("type", "IP"));
     }
 
     @UpdateScript(version = 7)
@@ -32,7 +42,6 @@ public class ProfileUpdateScript {
         conf.set("module.ip-address-blocker-rules.rules.example-rule.name", "Example");
         conf.set("module.ip-address-blocker-rules.rules.example-rule.url", "https://example.com/example.txt");
     }
-
 
     @UpdateScript(version = 4)
     public void ipDatabase() {

@@ -5,6 +5,8 @@ check-interval: 5000
 update-live-peers-interval: 13000
 # 封禁持续时间（单位：毫秒）
 ban-duration: 86400000
+# 断开连接判定时间（单位：毫秒）
+disconnect-duration: 60000
 # 功能模块
 module:
   # PeerId 封禁
@@ -162,7 +164,7 @@ module:
     # keep-hunting为true时有效，和cache-lifespan相似，对被猎杀IP的缓存持续时间
     keep-hunting-time: 2592000
   # 订阅规则
-  ip-address-blocker-rules:
+  rule-sub-blockers:
     enabled: false
     # 检查间隔
     check-interval: 86400000 # 24小时检查一次 毫秒
@@ -172,6 +174,8 @@ module:
       dh_torrents:
         # 是否启用
         enabled: false
+        # 匹配类型 IP PEER_ID_CONTAINS PEER_ID_STARTS_WITH CLIENT_NAME_CONTAINS CLIENT_NAME_STARTS_WITH
+        type: IP
         # 显示名称
         name: dh_torrents
         # 规则文件订阅地址

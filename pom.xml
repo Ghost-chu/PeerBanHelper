@@ -403,5 +403,10 @@
             <scope>provided</scope>
             <classifier>linux</classifier>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.cola</groupId>
+            <artifactId>cola-component-statemachine</artifactId>
+            <version>5.0.0</version>
+        </dependency>
     </dependencies>
 </project>

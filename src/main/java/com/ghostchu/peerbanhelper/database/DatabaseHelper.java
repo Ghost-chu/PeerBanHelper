@@ -1,6 +1,6 @@
 package com.ghostchu.peerbanhelper.database;
 
-import com.ghostchu.peerbanhelper.module.IPBanRuleUpdateType;
+import com.ghostchu.peerbanhelper.module.RuleUpdateType;
 import com.ghostchu.peerbanhelper.text.Lang;
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
@@ -366,7 +366,7 @@ public class DatabaseHelper {
                                 set.getString("rule_id"),
                                 set.getLong("update_time"),
                                 set.getInt("ent_count"),
-                                IPBanRuleUpdateType.valueOf(set.getString("update_type"))
+                                RuleUpdateType.valueOf(set.getString("update_type"))
                         ));
                     }
                     return infos;
@@ -383,7 +383,7 @@ public class DatabaseHelper {
      * @param updateType 更新类型
      * @throws SQLException SQL异常
      */
-    public void insertRuleSubLog(String ruleId, int count, IPBanRuleUpdateType updateType) throws SQLException {
+    public void insertRuleSubLog(String ruleId, int count, RuleUpdateType updateType) throws SQLException {
         try (Connection connection = manager.getConnection()) {
             PreparedStatement ps;
             ps = connection.prepareStatement("INSERT INTO rule_sub_logs (rule_id, update_time, ent_count, update_type) VALUES (?,?,?,?)");
